@@ -26,7 +26,7 @@
 .input-form input[type=text]:focus{
     outline: none;
 }
-.input-form input[type=button]{
+.input-form input[type=submit]{
     font-size: 1.1rem;
     margin-left: 20px;
     padding: 10px;

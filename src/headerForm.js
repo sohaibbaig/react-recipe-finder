@@ -7,7 +7,7 @@ function HeaderForm(){
             <h1 className="heading">Recipe Finder</h1>
             <form className="input-form">
                 <input type="text" placeholder="Enter the name of the dish" />
-                <input type="button" value="Get Ingredients" />
+                <input type="submit" value="Get Ingredients" onClick="getRecipe()" />
             </form>
         </div>
     )
