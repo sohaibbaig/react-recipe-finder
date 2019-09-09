@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Axios from 'axios';
+import './css/recipe-body.css';
 
 class RecipeBody extends Component{
     constructor(props){
@@ -27,33 +28,31 @@ class RecipeBody extends Component{
             let i=1;
             
             while (meal[0]['strIngredient'+i] !== ''){
-                list.push(<li>{meal[0]['strIngredient'+i]+"----"+meal[0]['strMeasure'+i]}</li>);
+                list.push(<li key={i}>{meal[0]['strIngredient'+i]+"----"+meal[0]['strMeasure'+i]}</li>);
                 i++;
             }
             console.log(list);
         }
         
         const id = (meal.length>0) ? (
-            <div>
-                <div>
+            <div className="recipeContainer">
+                <div className="title">
                     <h1>{meal[0].strMeal}</h1>
                 </div>
-                <div>
-                    <div>
-                        <img src = {meal[0].strMealThumb} alt={"Your meal for "+meal[0].strMeal} />
-                    </div>
+                <div className="recipeData">
+                    <img src = {meal[0].strMealThumb} alt={"Your meal for "+meal[0].strMeal} />
                     <div>
                         <p><em>Category of Meal:</em> {meal[0].strCategory} </p>
                         <p><em>Area of the Meal:</em> {meal[0].strArea} </p>
                         <h3>Ingredients:</h3>
-                        <ul>{list}</ul>
+                        <ul className="ingredients">{list}</ul>
                         <h3>Recipes</h3>
-                        <div>{meal[0].strInstructions}</div>
+                        <div className="recipe">{meal[0].strInstructions}</div>
                     </div>
                 </div>
             </div>
         ) : (
-            <div>No Data has been recieved</div>
+            <div className="noData">No Data has been recieved</div>
         );
         return <div>{id}</div>
     }
