@@ -24,3 +24,7 @@
 .recipe{
     height: 200px;
 }
+
+.noData{
+    text-align: center;
+}

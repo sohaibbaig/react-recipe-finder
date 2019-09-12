@@ -6,24 +6,49 @@ class RecipeBody extends Component{
     constructor(props){
         super(props);
         this.state = {
-            meal: []
+            meal: [],
         };
     }
     
     componentDidMount(){
-        Axios.get("https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata")
-            .then(resolve => {
-            console.log(resolve.data.meals);
-            this.setState({
-                meal: resolve.data.meals
-            });
-        })
+        console.log("https://www.themealdb.com/api/json/v1/1/search.php?s="+this.props.foodItem);
+        if (this.props.foodItem==='')
+            alert('Enter a Dish!!')
+        else{
+            Axios.get("https://www.themealdb.com/api/json/v1/1/search.php?s="+this.props.foodItem)
+                .then(resolve => {
+                console.log(resolve.data.meals);
+                this.setState({
+                    meal: resolve.data.meals
+                });
+            })
+        }
+        
+    }
+    
+    componentDidUpdate(prevProps){
+        
+        if (this.props.foodItem !== prevProps.foodItem) {
+            if (this.props.foodItem==='')
+                    alert('Enter a Dish!!')
+            else{
+                Axios.get("https://www.themealdb.com/api/json/v1/1/search.php?s="+this.props.foodItem)
+                    .then(resolve => {
+                    console.log(resolve.data.meals);
+                    this.setState({
+                        meal: resolve.data.meals
+                    });
+                })
+            }
+        }
+        
+        
         
     }
     
     render(){
         const {meal} = this.state;
-        if (meal.length>0){
+        if (meal!==null &&meal.length>0){
             var list = [];
             let i=1;
             
@@ -34,7 +59,7 @@ class RecipeBody extends Component{
             console.log(list);
         }
         
-        const id = (meal.length>0) ? (
+        const id = (meal!==null && meal.length>0) ? (
             <div className="recipeContainer">
                 <div className="title">
                     <h1>{meal[0].strMeal}</h1>
