@@ -29,7 +29,7 @@ class HeaderForm extends Component{
                     <h1 className="heading">Recipe Finder</h1>
                     <form className="input-form">
                         <input type="text" placeholder="Enter the name of the dish" id="text" />
-                        <input type="submit" value="Get Ingredients" onClick= {this.getRecipe} />
+                        <input type="submit" value="Get Recipes" onClick= {this.getRecipe} />
                     </form>
                 </div>
                 {

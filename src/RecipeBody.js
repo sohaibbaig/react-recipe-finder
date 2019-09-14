@@ -7,6 +7,7 @@ class RecipeBody extends Component{
         super(props);
         this.state = {
             meal: [],
+            liked: false
         };
     }
     
@@ -19,7 +20,8 @@ class RecipeBody extends Component{
                 .then(resolve => {
                 console.log(resolve.data.meals);
                 this.setState({
-                    meal: resolve.data.meals
+                    meal: resolve.data.meals,
+                    liked: false
                 });
             })
         }
@@ -36,7 +38,8 @@ class RecipeBody extends Component{
                     .then(resolve => {
                     console.log(resolve.data.meals);
                     this.setState({
-                        meal: resolve.data.meals
+                        meal: resolve.data.meals,
+                        liked: false
                     });
                 })
             }
@@ -46,8 +49,21 @@ class RecipeBody extends Component{
         
     }
     
+    likeMe = e =>{
+        console.log(1);
+        this.setState({
+            liked: true
+        });
+    }
+    unlikeMe = e =>{
+        console.log(2);
+        this.setState({
+            liked: false
+        });
+    }
+    
     render(){
-        const {meal} = this.state;
+        const {meal, liked} = this.state;
         if (meal!==null &&meal.length>0){
             var list = [];
             let i=1;
@@ -56,13 +72,14 @@ class RecipeBody extends Component{
                 list.push(<li key={i}>{meal[0]['strIngredient'+i]+"----"+meal[0]['strMeasure'+i]}</li>);
                 i++;
             }
-            console.log(list);
         }
+         const like = (this.state.liked)?(<span className="like red" onClick = {this.unlikeMe} >♥</ span >
+                ) : ( <span className="like" onClick= {this.likeMe} >♥</span> );
         
         const id = (meal!==null && meal.length>0) ? (
             <div className="recipeContainer">
                 <div className="title">
-                    <h1>{meal[0].strMeal}</h1>
+                    <h1>{meal[0].strMeal} <span>{like}</span></h1>
                 </div>
                 <div className="recipeData">
                     <img src = {meal[0].strMealThumb} alt={"Your meal for "+meal[0].strMeal} />
