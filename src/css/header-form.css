@@ -22,8 +22,11 @@
     width: 300px;
     font-size: 1.2rem;
     top: 3px;
+    text-align: center;
 }
 .input-form input[type=text]:focus{
+    text-align: center;
+    background-color: transparent;
     outline: none;
 }
 .input-form input[type=submit]{
