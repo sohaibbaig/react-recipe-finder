@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import HeaderForm from './HeaderForm';
+import HeaderForm from './headerForm';
 
 function App() {
   return (
